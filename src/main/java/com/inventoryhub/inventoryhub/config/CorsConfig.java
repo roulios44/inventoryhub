@@ -8,15 +8,26 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 public class CorsConfig {
+
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:5173");  // Remplacez par votre origine spécifique
-        config.addAllowedHeader("*");
+
+        // Autoriser toutes les origines (à adapter selon vos besoins)
+        config.addAllowedOrigin("http://localhost:5173");
+
+        // Autoriser toutes les méthodes HTTP
         config.addAllowedMethod("*");
+
+        // Autoriser tous les en-têtes
+        config.addAllowedHeader("*");
+
+        // Autoriser l'envoi de cookies par le navigateur
+        config.setAllowCredentials(true);
+
         source.registerCorsConfiguration("/**", config);
+
         return new CorsFilter(source);
     }
 }

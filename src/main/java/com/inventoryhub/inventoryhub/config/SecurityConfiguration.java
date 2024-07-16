@@ -19,6 +19,7 @@ import java.util.List;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfiguration {
+
     private final AuthenticationProvider authenticationProvider;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
@@ -32,35 +33,19 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/auth/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.csrf().disable()
+            .authorizeHttpRequests()
+                .requestMatchers("/auth/**").permitAll() // Autorise les requêtes vers /auth/** sans authentification
+                .anyRequest().authenticated() // Toutes les autres requêtes nécessitent une authentification
+            .and()
+            .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Utilisation de sessions sans état
+            .and()
+            .authenticationProvider(authenticationProvider)
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // Ajoute le filtre JWT avant UsernamePasswordAuthenticationFilter
+
+        http.cors(); // Active la gestion CORS par défaut
 
         return http.build();
-    }
-
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(List.of("http://localhost:8005"));
-        configuration.setAllowedMethods(List.of("GET","POST"));
-        configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-        source.registerCorsConfiguration("/**",configuration);
-
-        return source;
     }
 }

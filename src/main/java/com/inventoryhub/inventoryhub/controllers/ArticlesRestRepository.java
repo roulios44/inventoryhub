@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @PreAuthorize("isAuthenticated()")
-
 public class ArticlesRestRepository {
     private final ArticleService articlesService;
 
