@@ -2,7 +2,15 @@ package com.inventoryhub.inventoryhub.entities;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
@@ -14,7 +22,7 @@ public class Article {
     private String title;
     private String description;
     private double price;
-    private String image;
+    // private LongVarcharJdbcType image;
     @ManyToMany
     private Set<Warehouse> warehouse = new HashSet<>();
     

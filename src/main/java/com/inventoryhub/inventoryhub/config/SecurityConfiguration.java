@@ -44,7 +44,7 @@ public class SecurityConfiguration {
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // Ajoute le filtre JWT avant UsernamePasswordAuthenticationFilter
 
-        http.cors(); // Active la gestion CORS par défaut
+        // http.cors(); // Active la gestion CORS par défaut
 
         return http.build();
     }
