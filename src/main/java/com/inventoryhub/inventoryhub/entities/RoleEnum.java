@@ -1,7 +1,8 @@
 package com.inventoryhub.inventoryhub.entities;
 
 public enum RoleEnum {
-    USER,
-    ADMIN,
-    SUPER_ADMIN
+    WAREHOUSE_MANAGER,
+    SUPPLIER_COMMERCIAL,
+    CLIENT_COMMERCIAL,
+    ADMIN
 }
