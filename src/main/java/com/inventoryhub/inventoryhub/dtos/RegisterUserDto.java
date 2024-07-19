@@ -11,6 +11,8 @@ public class RegisterUserDto {
     private String name;
 
     private String surname;
+
+    private Long role;
     
     // getters and setters here...
 }
