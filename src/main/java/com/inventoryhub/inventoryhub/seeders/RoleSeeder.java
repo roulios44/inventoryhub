@@ -1,4 +1,4 @@
-package com.inventoryhub.inventoryhub.bootstrap;
+package com.inventoryhub.inventoryhub.seeders;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
