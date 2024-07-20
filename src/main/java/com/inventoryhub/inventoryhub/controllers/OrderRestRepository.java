@@ -1,9 +1,13 @@
 package com.inventoryhub.inventoryhub.controllers;
 
+import java.util.List;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.inventoryhub.inventoryhub.entities.Order;
 import com.inventoryhub.inventoryhub.services.OrderService;
 
 import lombok.RequiredArgsConstructor;
@@ -14,5 +18,10 @@ import lombok.RequiredArgsConstructor;
 @PreAuthorize("isAuthenticated()")
 
 public class OrderRestRepository {
-    private OrderService commandesService;
+    private final OrderService orderService;
+
+    @GetMapping(path = "/orders/all")
+    public List<Order> getAllOrders(){
+        return orderService.findAll();
+    }
 }

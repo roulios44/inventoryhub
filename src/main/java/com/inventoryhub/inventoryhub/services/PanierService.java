@@ -1,5 +1,9 @@
 package com.inventoryhub.inventoryhub.services;
 
+import java.util.List;
+
+import com.inventoryhub.inventoryhub.entities.Panier;
+
 public interface PanierService {
-    
+    List<Panier> findAll();
 }

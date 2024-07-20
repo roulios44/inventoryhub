@@ -12,7 +12,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class WarehouseServiceImplementation {
+public class WarehouseServiceImplementation implements WarehouseService {
 
     @Autowired
     private WarehouseRepository warehouseRepository;

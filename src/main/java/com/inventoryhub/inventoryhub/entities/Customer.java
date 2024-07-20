@@ -16,10 +16,10 @@ import lombok.Data;
 public class Customer {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String titre;
+    private String title;
     private String description;
     private String tel;
-    private String mail;
+    private String email;
     private String adresse;
     private String codePostal;
     private String pays;

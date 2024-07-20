@@ -30,7 +30,7 @@ public class Article {
     @JoinTable(
         name = "CREER",
         joinColumns = { @JoinColumn(name = "article_id") },
-        inverseJoinColumns = { @JoinColumn(name = "fournisseur_id") }
+        inverseJoinColumns = { @JoinColumn(name = "supplier_id") }
         )
     private Set<Supplier> suppliers_id;
 }

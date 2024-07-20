@@ -1,17 +1,16 @@
 package com.inventoryhub.inventoryhub.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.inventoryhub.inventoryhub.entities.Role;
 
 import jakarta.transaction.Transactional;
 
-import com.inventoryhub.inventoryhub.repositories.*;
-
 @Service
 @Transactional
-public class RoleService{
-
-    @Autowired
-    RoleRepository rolesRepository;
+public interface RoleService{
+    List<Role> findAll();
 }

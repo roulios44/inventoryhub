@@ -1,5 +1,9 @@
 package com.inventoryhub.inventoryhub.services;
 
-public interface TypeService{
+import java.util.List;
 
+import com.inventoryhub.inventoryhub.entities.Type;
+
+public interface TypeService{
+    List<Type> findAll();
 }

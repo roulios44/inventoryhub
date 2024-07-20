@@ -15,6 +15,7 @@ import lombok.Data;
 public class Order {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String orderNumber;
     private double total_price;
     private String delivery_adress;
     private String delivery_postcode;

@@ -1,5 +1,7 @@
 package com.inventoryhub.inventoryhub.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,11 @@ public class UserServiceImplementation implements UserService {
     public void save(User user) { 
         user.setPassword(passwordEncoder.encode(user.getPassword()));   
         userRepository.save(user);    
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
 }

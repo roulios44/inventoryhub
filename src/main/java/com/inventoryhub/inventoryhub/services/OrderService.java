@@ -1,6 +1,10 @@
 package com.inventoryhub.inventoryhub.services;
 
-public interface OrderService{
+import java.util.List;
 
+import com.inventoryhub.inventoryhub.entities.Order;
+
+public interface OrderService{
+List<Order> findAll();
     
 }

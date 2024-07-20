@@ -11,5 +11,4 @@ import com.inventoryhub.inventoryhub.entities.RoleEnum;
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
     Optional<Role> findByTitle(RoleEnum title);
-    // You can add custom queries here if needed
 }

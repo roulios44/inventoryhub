@@ -6,19 +6,19 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inventoryhub.inventoryhub.entities.Panier;
-import com.inventoryhub.inventoryhub.services.PanierService;
+import com.inventoryhub.inventoryhub.entities.Warehouse;
+import com.inventoryhub.inventoryhub.services.WarehouseService;
 
 import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequiredArgsConstructor
-@PreAuthorize("isAuthenticated()")
-public class PaniersRestRepository {
-    private final PanierService paniersService;
 
-    @GetMapping(path = "/paniers/all")
-    public List<Panier> getAllPaniers(){
-        return paniersService.findAll();
+@PreAuthorize("isAuthenticated()")
+public class WarehousesRestRepository {
+    private final WarehouseService warehouseService;
+
+    @GetMapping(path = "/warehouses/all")
+    public List<Warehouse> getAllWarehouses(){
+        return warehouseService.findAll();
     }
 }
