@@ -3,7 +3,7 @@ package com.inventoryhub.inventoryhub.dtos;
 import lombok.Data;
 
 @Data
-public class RegisterUserDto {
+public class RegisterUserDto implements ExposeDTO{
     private String email;
     
     private String password;
@@ -12,7 +12,5 @@ public class RegisterUserDto {
 
     private String surname;
 
-    private Long role;
-    
-    // getters and setters here...
+    private Long role;    
 }

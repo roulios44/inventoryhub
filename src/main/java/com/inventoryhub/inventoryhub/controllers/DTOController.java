@@ -13,17 +13,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@PreAuthorize("isAuthenticated()")
-@RequestMapping("/api/structure")
-public class EntityStructureController {
+import com.inventoryhub.inventoryhub.dtos.ExposeDTO;
 
-    @GetMapping("/{entityName}")
-    public ResponseEntity<List<Map<String, String>>> getEntityStructure(@PathVariable String entityName) {
+@RestController
+@RequestMapping("/api/dtos")
+@PreAuthorize("isAuthenticated()")
+public class DTOController {
+
+    @GetMapping("/{dtoName}")
+    public ResponseEntity<List<Map<String, String>>> getEntityStructure(@PathVariable String dtoName) {
         try {
             // Construire le nom complet de la classe
-            String entityClassName = "com.inventoryhub.inventoryhub.entities." + entityName.substring(0,1).toUpperCase() + entityName.substring(1);
+            String entityClassName = "com.inventoryhub.inventoryhub.dtos." + dtoName.substring(0,1).toUpperCase() + dtoName.substring(1) + "DTO";
             Class<?> entityClass = Class.forName(entityClassName);
+            if(entityClass.isAssignableFrom(ExposeDTO.class))throw new ClassNotFoundException();
             List<Map<String, String>> structure = getEntityStructure(entityClass);
             return ResponseEntity.ok().body(structure);
         } catch (ClassNotFoundException e) {
