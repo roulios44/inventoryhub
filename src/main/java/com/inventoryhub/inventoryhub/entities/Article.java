@@ -22,15 +22,24 @@ public class Article {
     private String title;
     private String description;
     private double price;
-    // private LongVarcharJdbcType image;
+
     @ManyToMany
+    @JoinTable(
+        name = "article_warehouse",
+        joinColumns = @JoinColumn(name = "article_id"),
+        inverseJoinColumns = @JoinColumn(name = "warehouse_id")
+    )
     private Set<Warehouse> warehouse = new HashSet<>();
-    
+
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "CREER",
         joinColumns = { @JoinColumn(name = "article_id") },
         inverseJoinColumns = { @JoinColumn(name = "supplier_id") }
-        )
+    )
     private Set<Supplier> suppliers_id;
+
+    @ManyToMany(mappedBy = "articles")
+    private Set<Order> orders = new HashSet<>();
 }
+

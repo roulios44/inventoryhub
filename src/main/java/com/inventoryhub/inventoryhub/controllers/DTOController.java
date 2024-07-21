@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.inventoryhub.inventoryhub.dtos.ExposeDTO;
 
 @RestController
@@ -27,6 +28,7 @@ public class DTOController {
             String entityClassName = "com.inventoryhub.inventoryhub.dtos." + dtoName.substring(0,1).toUpperCase() + dtoName.substring(1) + "DTO";
             Class<?> entityClass = Class.forName(entityClassName);
             if(entityClass.isAssignableFrom(ExposeDTO.class))throw new ClassNotFoundException();
+
             List<Map<String, String>> structure = getEntityStructure(entityClass);
             return ResponseEntity.ok().body(structure);
         } catch (ClassNotFoundException e) {
@@ -43,8 +45,12 @@ public class DTOController {
             Map<String, String> fieldDescriptor = new HashMap<>();
             fieldDescriptor.put("name", field.getName());
             fieldDescriptor.put("type", field.getType().getSimpleName());
+            JsonPropertyDescription description = field.getAnnotation(JsonPropertyDescription.class);
+            fieldDescriptor.put("frontName", description != null ? description.value() : "");
             fieldDescriptors.add(fieldDescriptor);
         }
         return fieldDescriptors;
     }
 }
+
+

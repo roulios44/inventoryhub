@@ -1,7 +1,8 @@
 package com.inventoryhub.inventoryhub.dtos;
 
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+
 import lombok.Data;
-import java.util.Set;
 
 @Data
 public class ArticleDTO implements ExposeDTO {
@@ -9,6 +10,6 @@ public class ArticleDTO implements ExposeDTO {
     private String title;
     private String description;
     private double price;
-    private Set<Long> warehouseIds;
-    private Set<Long> supplierIds;
+    @JsonPropertyDescription("Supplier")
+    private Long supplier;
 }
